@@ -10,9 +10,10 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'não autorizado' }, { status: 401 })
   }
 
+  const serviceKey = (process.env.SUPABASE_SERVICE_ROLE_KEY ?? '').replace(/\s+/g, '')
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    serviceKey,
     { auth: { autoRefreshToken: false, persistSession: false } }
   )
 
