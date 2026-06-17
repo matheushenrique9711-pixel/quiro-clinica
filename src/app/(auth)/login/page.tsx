@@ -31,7 +31,7 @@ export default function LoginPage() {
     setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
-      toast.error('Email ou senha incorretos')
+      toast.error(error.message)
     } else {
       router.push('/dashboard')
     }

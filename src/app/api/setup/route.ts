@@ -43,5 +43,10 @@ export async function GET(request: Request) {
 
   await supabase.from('profiles').update({ role: 'admin', name: 'Matheus' }).eq('user_id', user.id)
 
-  return NextResponse.json({ ok: true, acao: 'senha atualizada', email: user.email })
+  return NextResponse.json({
+    ok: true,
+    acao: 'senha atualizada',
+    email: user.email,
+    url_usada: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  })
 }
